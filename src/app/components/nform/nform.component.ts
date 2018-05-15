@@ -8,18 +8,22 @@ import { FormGroup, FormControl, FormArray } from '@angular/forms';
 })
 export class NformComponent implements OnInit {
 
-  constructor() { }
+  public contactTypes: { value: string, title: string }[] = [
+    {value: 'phone', title: 'Phone'},
+    {value: 'e-mail', title: 'E-mail'},
+    {value: 'skype', title: 'Skype'}
+  ];
+
+  constructor() {
+  }
 
   ngOnInit() {
-    
+
   }
 
   public signUpForm: FormGroup = new FormGroup({
     name: new FormControl(''),
-    address: new FormGroup({
-      country: new FormControl(''),
-      city: new FormControl('')
-    })
+    contacts: new FormArray([])
   });
 
   public addContact(): void {
@@ -29,6 +33,14 @@ export class NformComponent implements OnInit {
         value: new FormControl('')
       })
     )
+  }
+
+  public removeContact(i: number): void {
+    (<FormArray>this.signUpForm.get('contacts')).removeAt(i);
+  }
+
+  public get contacts(): FormArray {
+    return <FormArray>this.signUpForm.get('contacts');
   }
 
 }

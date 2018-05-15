@@ -1,8 +1,16 @@
 <form novalidate [formGroup]="signUpForm">
   name: <input type="text" formControlName="name">
-  <fieldset formGroupName="address">
-    country: <input type="text" formControlName="country">
-    <br>
-    city: <input type="text" formControlName="city">
+
+  <fieldset formArrayName="contacts">
+    <div *ngFor="let contact of contacts.controls; let i = index;">
+      <select [formControl]="contact.controls['type']">
+        <option *ngFor="let opt of contactTypes" [value]="opt.value">{{ opt.title }}</option>        
+      </select>
+
+      <input type="text" [formControl]="contact.controls['value']"> 
+      <button type="button" (click)="removeContact(i)">X</button>    
+    </div>
+
+    <button type="button" (click)="addContact()">add contact</button>
   </fieldset>
 </form>
