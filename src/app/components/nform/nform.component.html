@@ -1,3 +1,8 @@
-<p>
-  nform works!
-</p>
+<form novalidate [formGroup]="signUpForm">
+  name: <input type="text" formControlName="name">
+  <fieldset formGroupName="address">
+    country: <input type="text" formControlName="country">
+    <br>
+    city: <input type="text" formControlName="city">
+  </fieldset>
+</form>
