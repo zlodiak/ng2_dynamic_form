@@ -1,0 +1,18 @@
+<div class="btn-group btn-group-justified" [ngClass]="{'show': isOpen}">
+  <button type="button" class="btn">{{ placeholder }}</button>
+  <button type="button" class="btn dropdown-toggle dropdown-toggle-split" (click)="toggleOpen()">
+    <span class="sr-only">toggle dropdown</span>
+  </button>
+
+  <div class="dropdown-menu">
+    <button 
+      class="dropdown-item" 
+      type="button" 
+      *ngFor="let option of options"
+      [ngClass]="{'active': option.value === value}" 
+      (click)="optionSelect(option)">{{ option.title }}
+    </button>
+    <div class="dropdown-item" *ngIf="!options.length">no items</div>     
+  </div>
+
+</div>

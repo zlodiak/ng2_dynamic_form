@@ -1,3 +1,9 @@
-<p>
-  nfrom2 works!
-</p>
+------------
+
+<form novalidate [formGroup]="signUpForm">
+  <fieldset formArrayName="contacts">
+    <div *ngFor="let contact of contacts.controls">
+      <custom-select [options]="contactTypes" [formControl]="contact.controls['type']"></custom-select> 
+    </div>
+  </fieldset>
+</form>
